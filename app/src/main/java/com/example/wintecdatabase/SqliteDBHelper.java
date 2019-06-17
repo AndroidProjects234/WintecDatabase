@@ -11,6 +11,8 @@ public class SqliteDBHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;    //update structure of the database
     public static final String DATABASE_NAME = "wintec.db";  //We save it into file
     public static final String TABLE_COURSES = "COURSES";//name of the table
+    public static final String TABLE_STUDENT = "STUDENT";//name of the table
+
 
     public String[] arrcourses = {"Network Engineering", "Database Architecture", "Web Development", "Software Engineering"};
 
@@ -119,6 +121,10 @@ public class SqliteDBHelper extends SQLiteOpenHelper {
 
     //Names of columns
     public static final String COLUMN_ID = "_id";
+    public static final String STUDENT_ID = "student_id";
+    public static final String FULL_NAME = "fullname";
+    public static final String PASSWORD = "password";
+    public static final String CONFIRM_PASSWORD = "confirmpassword";
     public static final String MODULE_CODE = "module_code";
     public static final String MODULE_TITLE = "module_title";
     public static final String PRESCRIPTION = "prescription";
@@ -128,6 +134,14 @@ public class SqliteDBHelper extends SQLiteOpenHelper {
     public String query = "CREATE TABLE " + TABLE_COURSES + "(" +         //Creating courses table
             COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," +
             COURSE_NAME + " TEXT UNIQUE " +
+            ");";
+
+    public String query25 = "CREATE TABLE " + TABLE_STUDENT + "(" +         //Creating student table
+            COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," +
+            FULL_NAME + " TEXT ," +
+            STUDENT_ID + " TEXT UNIQUE ," +
+            PASSWORD + " TEXT ," +
+            CONFIRM_PASSWORD + " TEXT " +
             ");";
 
     // creating network engineer table
@@ -373,7 +387,7 @@ public class SqliteDBHelper extends SQLiteOpenHelper {
         db.execSQL(query22);
         db.execSQL(query23);
         db.execSQL(query24);
-
+        db.execSQL(query25);
     }
 
     @Override
@@ -403,6 +417,7 @@ public class SqliteDBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SOFTWARE_ENGINEERING_SEM_4);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SOFTWARE_ENGINEERING_SEM_5);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SOFTWARE_ENGINEERING_SEM_6);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_STUDENT);
         onCreate(db);
 
     }
